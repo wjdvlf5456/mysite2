@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="../../assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/user.css" rel="stylesheet" type="text/css">
+<link href="/mysite2/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="/mysite2/assets/css/user.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -20,7 +20,7 @@
 
 			<!-- 
 			<ul>
-				<li>황일영 님 안녕하세요^^</li>
+				<li>최정필 님 안녕하세요^^</li>
 				<li><a href="" class="btn_s">로그아웃</a></li>
 				<li><a href="" class="btn_s">회원정보수정</a></li>
 			</ul>
@@ -128,7 +128,7 @@
 		<!-- //container  -->
 		
 		<div id="footer">
-			Copyright ⓒ 2020 황일영. All right reserved
+			Copyright ⓒ 2022 최정필. All right reserved
 		</div>
 		<!-- //footer -->
 
