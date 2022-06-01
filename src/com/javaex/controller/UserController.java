@@ -1,6 +1,7 @@
 package com.javaex.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,10 +20,42 @@ public class UserController extends HttpServlet {
 		//포스트 방식일 때 한글깨짐 방지
 		request.setCharacterEncoding("UTF-8");
 		
-		System.out.println("user");
+		String action = request.getParameter("action");
+		System.out.println(action);
 		
-		//포워드
-		WebUitl.forward(request, response, "/WEB-INF/views/user/joinForm.jsp");
+		if ("joinForm".equals(action)) {
+			
+			//포워드
+			WebUitl.forward(request, response, "/WEB-INF/views/user/joinForm.jsp");
+			
+		} else if("join".equals(action)){
+			
+			
+			
+			WebUitl.forward(request, response, "WEB-INF/views/user/JoinOk.jsp");
+			
+		} else if("loginForm".equals(action)){	//로그인 폼일 때
+			//포워드
+			WebUitl.forward(request, response, "WEB-INF/views/user/loginForm.jsp");
+		} else if("login".equals(action)){
+			
+			int no = Integer.parseInt(request.getParameter("no"));
+			String password = request.getParameter("password");
+			
+			
+			
+		} else if("modifyForm".equals(action)){
+			
+			WebUitl.forward(request, response, "WEB-INF/views/user/modifyForm.jsp");
+			
+		} else if("modify".equals(action)){
+			
+			WebUitl.forward(request, response, "WEB-INF/views/user/modifyForm.jsp");
+			
+		} else {
+			System.out.println("action 파라미터 없음");
+		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

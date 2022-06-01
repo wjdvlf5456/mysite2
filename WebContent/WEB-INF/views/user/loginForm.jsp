@@ -14,7 +14,7 @@
 
 		<div id="header" class="clearfix">
 			<h1>
-				<a href="">MySite</a>
+				<a href="./main">MySite</a>
 			</h1>
 
 			<!-- 
@@ -25,8 +25,8 @@
 			</ul>
 			-->	
 			<ul>
-				<li><a href="" class="btn_s">로그인</a></li>
-				<li><a href="" class="btn_s">회원가입</a></li>
+				<li><a href="./user?action=loginForm" class="btn_s">로그인</a></li>
+				<li><a href="./user?action=joinForm" class="btn_s">회원가입</a></li>
 			</ul>
 			
 		</div>
@@ -47,8 +47,8 @@
 				<h2>회원</h2>
 				<ul>
 					<li>회원정보</li>
-					<li>로그인</li>
-					<li>회원가입</li>
+					<li><a href = "./user?action=loginForm">로그인</a></li>
+					<li><a href="./user?action=joinForm">회원가입</a></li>
 				</ul>
 			</div>
 			<!-- //aside -->
@@ -70,7 +70,7 @@
 	
 				<div id="user">
 					<div id="loginForm">
-						<form action="" method="">
+						<form action="./user?action=login" method="post">
 	
 							<!-- 아이디 -->
 							<div class="form-group">

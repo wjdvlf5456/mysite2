@@ -19,10 +19,33 @@ public class GuestbookController extends HttpServlet {
 		//포스트 방식일 때 한글깨짐 방지
 		request.setCharacterEncoding("UTF-8");
 		
-		System.out.println("gbccont");
+		//action 파라미터 생성
+		String action = request.getParameter("action");
+		System.out.println(action);
 		
-		//포워드
-		WebUitl.forward(request, response, "/WEB-INF/views/main/index.jsp");
+		
+		//add관리
+		if ("addList".equals(action)) {
+			
+			
+			WebUitl.forward(request, response, "/WEB-INF/views/guestbook/addList.jsp");
+			
+		} else if("add".equals(action)){
+			
+			WebUitl.forward(request, response, "/gbc?action=addList");
+			
+		//delete관리	
+		} else if("deleteForm".equals(action)){
+			
+			WebUitl.forward(request, response, "/WEB-INF/views/guestbook/deletForm.jsp");
+			
+		} else if("delete".equals(action)){
+			
+			WebUitl.forward(request, response, "/gbc?action=deleteForm");
+
+		} else {
+			System.out.println("action 파라미터 없음");
+		}
 		
 	}
 

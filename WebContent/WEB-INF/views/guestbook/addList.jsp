@@ -1,5 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page import = "java.util.List" %>
+<%@ page import = " com.javaex.vo.GuestBookVo "%>
+<%@ page import = " com.javaex.dao.GuestBookDao "%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	GuestBookDao guestBookDao = new GuestBookDao();
+	List<GuestBookVo> guestList = guestBookDao.guestSelect();
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +22,7 @@
 
 		<div id="header" class="clearfix">
 			<h1>
-				<a href="">MySite</a>
+				<a href="./main">MySite</a>
 			</h1>
 
 			<!-- 
@@ -27,8 +33,8 @@
 			</ul>
 			-->	
 			<ul>
-				<li><a href="" class="btn_s">로그인</a></li>
-				<li><a href="" class="btn_s">회원가입</a></li>
+				<li><a href="./user?action=loginForm" class="btn_s">로그인</a></li>
+				<li><a href="./user?action=joinForm" class="btn_s">회원가입</a></li>
 			</ul>
 			
 		</div>
@@ -49,7 +55,7 @@
 				<h2>방명록</h2>
 				<ul>
 					<li>일반방명록</li>
-					<li>ajax방명록</li>
+					<li>비밀방명록</li>
 				</ul>
 			</div>
 			<!-- //aside -->
@@ -69,7 +75,7 @@
 				<!-- //content-head -->
 
 				<div id="guestbook">
-					<form action="" method="">
+					<form action="./gbc?action=add" method="post">
 						<table id="guestAdd">
 							<colgroup>
 								<col style="width: 70px;">
