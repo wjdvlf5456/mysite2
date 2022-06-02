@@ -1,5 +1,14 @@
+<%@page import="com.javaex.vo.UserVo"%>
+<%@page import="com.javaex.dao.UserDao"%>
+<%@ page import = "java.util.List"  %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+    UserDao usersDao = new UserDao();
+	List<UserVo> userList = usersDao.userSelect();
+
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,7 +80,7 @@
 	
 				<div id="user">
 					<div id="joinForm">
-						<form action="" method="">
+						<form action="./user?action=add" method="post">
 	
 							<!-- 아이디 -->
 							<div class="form-group">

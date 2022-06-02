@@ -1,6 +1,6 @@
 package com.javaex.vo;
 
-public class UsersVo {
+public class UserVo {
 	
 	//필드
 	private int no;
@@ -10,18 +10,18 @@ public class UsersVo {
 	private String gender;
 	
 	//생성자
-	public UsersVo() {
+	public UserVo() {
 		
 	}
 
-	public UsersVo(String id, String password, String name, String gender) {
+	public UserVo(String id, String password, String name, String gender) {
 		this.id = id;
 		this.password = password;
 		this.name = name;
 		this.gender = gender;
 	}
 
-	public UsersVo(int no, String id, String password, String name, String gender) {
+	public UserVo(int no, String id, String password, String name, String gender) {
 		this.no = no;
 		this.id = id;
 		this.password = password;
