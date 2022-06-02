@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.javaex.dao.UserDao;
 import com.javaex.util.WebUitl;
@@ -26,8 +27,9 @@ public class UserController extends HttpServlet {
 		System.out.println(action);
 		
 		if ("joinForm".equals(action)) {
+			System.out.println("UserController>joinForm");
 			
-			//포워드
+			// 회원가입 폼 포워드
 			WebUitl.forward(request, response, "/WEB-INF/views/user/joinForm.jsp");
 			
 		} else if("join".equals(action)){
@@ -48,6 +50,8 @@ public class UserController extends HttpServlet {
 			WebUitl.forward(request, response, "WEB-INF/views/user/joinOk.jsp");
 			
 		} else if("loginForm".equals(action)){	//로그인 폼일 때
+			System.out.println("UserController>loginForm");
+			
 			//포워드
 			WebUitl.forward(request, response, "WEB-INF/views/user/loginForm.jsp");
 		} else if("login".equals(action)){
@@ -55,11 +59,31 @@ public class UserController extends HttpServlet {
 			String id = request.getParameter("id");
 			String password = request.getParameter("password");
 			
-			UserVo userVo = new UserVo(id,password);
+			UserVo userVo = new UserVo();
+			userVo.setId(id);
+			userVo.setPassword(password);
 			
 			UserDao userDao = new UserDao();
+			UserVo authUser = userDao.getUser(userVo);
 			
-			//userDao.
+			if (authUser == null) {
+				System.out.println("로그인 실패");
+			} else {
+				System.out.println("로그인 성공");
+				
+				HttpSession session = request.getSession();
+				session.setAttribute("authUser", authUser);
+				
+				WebUitl.forward(request, response, "/mysite2/main");
+
+			}
+		
+		} else if("logout".equals(action)){
+			System.out.println("UserController>logoust");
+			
+			HttpSession session = request.getSession();
+			session.removeAttribute(action);
+			session.invalidate();
 			
 			
 		} else if("modifyForm".equals(action)){

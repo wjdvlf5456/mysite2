@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ page import ="com.javaex.vo.UserVo"%>
+    
+    
+<%
+	UserVo authUser = (UserVo)session.getAttribute("authUser");
+	System.out.println(authUser);
+%>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,21 +24,20 @@
 
 		<div id="header" class="clearfix">
 			<h1>
-				<a href="./main">MySite</a>
+				<a href="/mysite2/main">MySite</a>
 			</h1>
-
-			<!-- 
+			<%if(authUser == null){%>
 			<ul>
-				<li>최정필 님 안녕하세요^^</li>
-				<li><a href="" class="btn_s">로그아웃</a></li>
+				<li><a href="/mysite2/user?action=loginForm" class="btn_s">로그인</a></li>
+				<li><a href="/mysite2/user?action=joinForm" class="btn_s">회원가입</a></li>
+			</ul>
+			<%} else {%>
+			<ul>
+				<li><%=authUser.getName() %> 님 안녕하세요^^</li>
+				<li><a href="/mysite2/user?action=logout" class="btn_s">로그아웃</a></li>
 				<li><a href="" class="btn_s">회원정보수정</a></li>
 			</ul>
-			-->	
-			<ul>
-				<li><a href="./user?action=loginForm" class="btn_s">로그인</a></li>
-				<li><a href="./user?action=joinForm" class="btn_s">회원가입</a></li>
-			</ul>
-			
+			<%}%>
 		</div>
 		<!-- //header -->
 
@@ -69,7 +77,7 @@
 							<br>
 							(자유롭게 꾸며보세요!!)<br>
 							<br><br>
-							<a class="" href="./gbc?action=addList">[방명록에 글 남기기]</a>
+							<a class="" href="/mysite2/gbc?action=addList">[방명록에 글 남기기]</a>
 						</p>	
 					</div>
 					<!-- //greetings -->

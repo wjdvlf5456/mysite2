@@ -35,8 +35,8 @@
 			</ul>
 			-->	
 			<ul>
-				<li><a href="./user?action=loginForm" class="btn_s">로그인</a></li>
-				<li><a href="./user?action=joinForm" class="btn_s">회원가입</a></li>
+				<li><a href="mysite2/user?action=loginForm" class="btn_s">로그인</a></li>
+				<li><a href="mysite2/user?action=joinForm" class="btn_s">회원가입</a></li>
 			</ul>
 			
 		</div>
@@ -80,8 +80,8 @@
 	
 				<div id="user">
 					<div id="joinForm">
-						<form action="./user?action=join" method="post">
-	
+						<form action="/mysite2/user" method="get">
+						<input type = "text" name = "action" value = "join">
 							<!-- 아이디 -->
 							<div class="form-group">
 								<label class="form-text" for="input-uid">아이디</label> 
@@ -106,10 +106,10 @@
 								<span class="form-text">성별</span> 
 								
 								<label for="rdo-male">남</label> 
-								<input type="radio" id="rdo-male" name="gender" value="" > 
+								<input type="radio" id="rdo-male" name="gender" value="male" > 
 								
 								<label for="rdo-female">여</label> 
-								<input type="radio" id="rdo-female" name="gender" value="" > 
+								<input type="radio" id="rdo-female" name="gender" value="female" > 
 	
 							</div>
 	

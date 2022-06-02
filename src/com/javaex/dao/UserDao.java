@@ -105,6 +105,7 @@ public class UserDao {
 		return userList;
 	}
 
+	// 회원가입
 	public int userInsert(UserVo userVo) {
 		int count = 1;
 		getConnection();
@@ -198,6 +199,51 @@ public class UserDao {
 		close();
 
 		return count;
+	}
+
+	// 사용자 정보 가져오기(로그인시 사용)
+	public UserVo getUser(UserVo userVo) {
+
+		UserVo authUser = null;
+
+		this.getConnection();
+
+		try {
+
+			// 3. SQL문 준비 / 바인딩 / 실행
+			// SQL문 준비
+			String query = "";
+			query += " select no, ";
+			query += "        name ";
+			query += " from users ";
+			query += " where id = ? ";
+			query += " and password = ? ";
+
+			// 바인딩
+			pstmt = conn.prepareStatement(query);
+
+			pstmt.setString(1, userVo.getId());
+			pstmt.setString(2, userVo.getPassword());
+
+			// 실행
+			rs = pstmt.executeQuery();
+
+			// 4.결과처리
+			while (rs.next()) {
+				int no = rs.getInt("no");
+				String name = rs.getString("name");
+
+				authUser = new UserVo();
+				authUser.setNo(no);
+				authUser.setName(name);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		}
+
+		this.close();
+		return authUser;
 	}
 
 }
