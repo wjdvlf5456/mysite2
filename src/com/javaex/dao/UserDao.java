@@ -138,7 +138,7 @@ public class UserDao {
 		return count;
 	}
 
-	public int userDelete(int no) {
+	public int userDelete(UserVo userVo) {
 		int count = 1;
 		getConnection();
 
@@ -150,7 +150,7 @@ public class UserDao {
 
 			// 바인딩
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, no);
+			pstmt.setInt(1, userVo.getNo());
 
 			// 실행
 			count = pstmt.executeUpdate();

@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.javaex.dao.UserDao;
 import com.javaex.util.WebUitl;
+import com.javaex.vo.UserVo;
 
 @WebServlet("/user")
 public class UserController extends HttpServlet {
@@ -30,18 +32,34 @@ public class UserController extends HttpServlet {
 			
 		} else if("join".equals(action)){
 			
+			//파라미터 만들기
+			String id = request.getParameter("id");
+			String password  = request.getParameter("password");
+			String name = request.getParameter("name");
+			String gender = request.getParameter("gender");
 			
+			//파라미터 이용하여 Vo에 새 주소 만들기
+			UserVo userVo  = new UserVo(id, password, name, gender);
+			//데이터베이스에 정보 추가
+			UserDao userDao = new UserDao();
+			userDao.userInsert(userVo);
 			
-			WebUitl.forward(request, response, "WEB-INF/views/user/JoinOk.jsp");
+			//포워드
+			WebUitl.forward(request, response, "WEB-INF/views/user/joinOk.jsp");
 			
 		} else if("loginForm".equals(action)){	//로그인 폼일 때
 			//포워드
 			WebUitl.forward(request, response, "WEB-INF/views/user/loginForm.jsp");
 		} else if("login".equals(action)){
 			
-			int no = Integer.parseInt(request.getParameter("no"));
+			String id = request.getParameter("id");
 			String password = request.getParameter("password");
 			
+			UserVo userVo = new UserVo(id,password);
+			
+			UserDao userDao = new UserDao();
+			
+			//userDao.
 			
 			
 		} else if("modifyForm".equals(action)){
