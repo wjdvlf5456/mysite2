@@ -74,7 +74,7 @@ public class UserController extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("authUser", authUser);
 				
-				WebUitl.forward(request, response, "/mysite2/main");
+				WebUitl.forward(request, response, "/main");
 
 			}
 		
@@ -85,7 +85,7 @@ public class UserController extends HttpServlet {
 			session.removeAttribute(action);
 			session.invalidate();
 			
-			
+			WebUitl.forward(request, response, "/main");
 		} else if("modifyForm".equals(action)){
 			
 			WebUitl.forward(request, response, "WEB-INF/views/user/modifyForm.jsp");
