@@ -81,7 +81,7 @@
 				<div id="user">
 					<div id="joinForm">
 						<form action="/mysite2/user" method="get">
-						<input type = "text" name = "action" value = "join">
+						<input type = "hidden" name = "action" value = "join">
 							<!-- 아이디 -->
 							<div class="form-group">
 								<label class="form-text" for="input-uid">아이디</label> 

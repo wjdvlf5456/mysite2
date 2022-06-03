@@ -68,6 +68,7 @@ public class UserController extends HttpServlet {
 			
 			if (authUser == null) {
 				System.out.println("로그인 실패");
+				WebUitl.forward(request, response, "WEB-INF/views/user/loginForm.jsp");
 			} else {
 				System.out.println("로그인 성공");
 				

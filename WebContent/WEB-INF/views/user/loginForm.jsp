@@ -71,7 +71,7 @@
 				<div id="user">
 					<div id="loginForm">
 						<form action="/mysite2/user" method="post">
-						<input type ="text" name="action" value = "login">
+						<input type ="hidden" name="action" value = "login">
 							<!-- 아이디 -->
 							<div class="form-group">
 								<label class="form-text" for="input-uid">아이디</label> 
