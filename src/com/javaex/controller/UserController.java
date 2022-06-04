@@ -107,6 +107,7 @@ public class UserController extends HttpServlet {
 			WebUtil.forward(request, response, "/WEB-INF/views/user/modifyForm.jsp");
 			
 		} else if("modify".equals(action)){	//수정
+			
 			HttpSession session = request.getSession();;
 			UserVo authUser = (UserVo)session.getAttribute("authUser");
 			int no = authUser.getNo();

@@ -12,6 +12,7 @@ public class UserVo {
 	
 	//생성자
 	public UserVo() {
+
 	}
 	
 	public UserVo(String id, String name, String password, String gender) {
