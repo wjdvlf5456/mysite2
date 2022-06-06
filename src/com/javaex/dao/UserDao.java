@@ -107,14 +107,14 @@ public class UserDao {
 
 	// 회원가입
 	public int userInsert(UserVo userVo) {
-		int count = 1;
+		int count = -1;
 		getConnection();
 
 		try {
 			// sql문 준비
 			String query = "";
 			query += " insert into users ";
-			query += " values(seq_users_id.nextval, ?, ?, ? ,?) ";
+			query += " values(seq_users_id.nextval, ?, ?, ?, ?) ";
 
 			// 바인딩
 			pstmt = conn.prepareStatement(query);
@@ -124,7 +124,6 @@ public class UserDao {
 			pstmt.setString(4, userVo.getGender());
 
 			// 실행
-			// 성공횟수
 			count = pstmt.executeUpdate();
 
 			// 결과처리
@@ -170,25 +169,26 @@ public class UserDao {
 
 	public int userUpdate(UserVo userVo) {
 
-		int count = 1;
+		int count = -1;
 		getConnection();
 
 		try {
+			// 쿼리문 작성
 			String query = "";
 			query += " update users ";
-			query += " set id = ?, ";
-			query += " 	   password = ?, ";
-			query += " 	   name = ?, ";
-			query += " 	   gender = ? ";
-			query += "where no = ? ";
+			query += " set 	 password = ?, ";
+			query += " 	   	 name = ?, ";
+			query += " 	   	 gender = ? ";
+			query += " where no = ? ";
 
+			// 바인딩
 			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userVo.getPassword());
+			pstmt.setString(2, userVo.getName());
+			pstmt.setString(3, userVo.getGender());
+			pstmt.setInt(4, userVo.getNo());
 
 			count = pstmt.executeUpdate();
-			pstmt.setString(1, userVo.getId());
-			pstmt.setString(2, userVo.getPassword());
-			pstmt.setString(3, userVo.getName());
-			pstmt.setString(4, userVo.getGender());
 
 			System.out.println(count + "건이 수정되었습니다.");
 
@@ -206,10 +206,9 @@ public class UserDao {
 
 		UserVo authUser = null;
 
-		this.getConnection();
+		getConnection();
 
 		try {
-
 			// 3. SQL문 준비 / 바인딩 / 실행
 			// SQL문 준비
 			String query = "";
@@ -229,9 +228,9 @@ public class UserDao {
 			rs = pstmt.executeQuery();
 
 			// 4.결과처리
-			while (rs.next()) {
-				int no = rs.getInt("no");
-				String name = rs.getString("name");
+			if (rs.next()) {
+				int no = rs.getInt(1);
+				String name = rs.getString(2);
 
 				authUser = new UserVo();
 				authUser.setNo(no);
@@ -241,9 +240,52 @@ public class UserDao {
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
 		}
-
-		this.close();
+		close();
 		return authUser;
 	}
 
+	// 사용자 정보 가져오기(회원정보 수정폼, no,Id,Password,name,gender)
+	public UserVo getUser(int no) {
+		UserVo userVo = null;
+		this.getConnection();
+
+		try {
+
+			// 3. SQL문 준비 / 바인딩 / 실행
+			// SQL문 준비
+			String query = "";
+			query += " select  no, ";
+			query += "         id, ";
+			query += "         password, ";
+			query += "         name, ";
+			query += "         gender ";
+			query += " from users ";
+			query += " where no = ? ";
+
+			// 바인딩
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, no);
+
+			// 실행
+			rs = pstmt.executeQuery();
+
+			// 4.결과처리
+			while (rs.next()) {
+				int userno = rs.getInt("no");
+				String id = rs.getString("id");
+				String password = rs.getString("password");
+				String name = rs.getString("name");
+				String gender = rs.getString("gender");
+
+				userVo = new UserVo(userno, id, password, name, gender);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		}
+
+		close();
+
+		return userVo;
+	}
 }

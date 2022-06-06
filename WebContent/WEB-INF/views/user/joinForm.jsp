@@ -7,7 +7,7 @@
 <%
     UserDao usersDao = new UserDao();
 	List<UserVo> userList = usersDao.userSelect();
-
+	UserVo authUser = (UserVo)session.getAttribute("authUser");
 %>    
 <!DOCTYPE html>
 <html>
@@ -21,24 +21,22 @@
 
 <body>
 	<div id="wrap">
-
 		<div id="header" class="clearfix">
 			<h1>
 				<a href="./main">MySite</a>
 			</h1>
-
-			<!-- 
+			<%if(authUser == null){%>
 			<ul>
-				<li>최정필 님 안녕하세요^^</li>
-				<li><a href="" class="btn_s">로그아웃</a></li>
-				<li><a href="" class="btn_s">회원정보수정</a></li>
+				<li><a href="/mysite2/user?action=loginForm" class="btn_s">로그인</a></li>
+				<li><a href="/mysite2/user?action=joinForm" class="btn_s">회원가입</a></li>
 			</ul>
-			-->	
+			<%} else {%>
 			<ul>
-				<li><a href="mysite2/user?action=loginForm" class="btn_s">로그인</a></li>
-				<li><a href="mysite2/user?action=joinForm" class="btn_s">회원가입</a></li>
+				<li><%=authUser.getName() %> 님 안녕하세요^^</li>
+				<li><a href="/mysite2/user?action=logout" class="btn_s">로그아웃</a></li>
+				<li><a href="/mysite2/user?action=modifyForm" class="btn_s">회원정보수정</a></li>
 			</ul>
-			
+			<%}%>
 		</div>
 		<!-- //header -->
 
@@ -47,7 +45,7 @@
 				<li><a href="">입사지원서</a></li>
 				<li><a href="">게시판</a></li>
 				<li><a href="">갤러리</a></li>
-				<li><a href="">방명록</a></li>
+				<li><a href="./gbc?action=addList">방명록</a></li>
 			</ul>
 		</div>
 		<!-- //nav -->
@@ -80,7 +78,7 @@
 	
 				<div id="user">
 					<div id="joinForm">
-						<form action="/mysite2/user" method="get">
+						<form action="/mysite2/user" method="post">
 						<input type = "hidden" name = "action" value = "join">
 							<!-- 아이디 -->
 							<div class="form-group">
@@ -92,7 +90,7 @@
 							<!-- 비밀번호 -->
 							<div class="form-group">
 								<label class="form-text" for="input-pass">패스워드</label> 
-								<input type="text" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요"	>
+								<input type="password" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요"	>
 							</div>
 	
 							<!-- 이메일 -->

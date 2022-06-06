@@ -14,6 +14,9 @@ public class GuestBookVo {
 	public GuestBookVo() {
 
 	}
+	public GuestBookVo(int no) {
+		this.no = no;
+	}
 	public GuestBookVo(int no, String password) {
 		this.no = no;
 		this.password = password;
@@ -25,9 +28,9 @@ public class GuestBookVo {
 		this.content = content;
 	}
 
-	public GuestBookVo(String name, String password, String content, String regDate) {
+	public GuestBookVo(int no, String name, String content, String regDate) {
+		this.no = no;
 		this.name = name;
-		this.password = password;
 		this.content = content;
 		this.regDate = regDate;
 	}

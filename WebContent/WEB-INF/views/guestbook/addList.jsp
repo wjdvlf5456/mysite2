@@ -1,10 +1,12 @@
 <%@ page import = "java.util.List" %>
 <%@ page import = " com.javaex.vo.GuestBookVo "%>
-<%@ page import = " com.javaex.dao.GuestBookDao "%>
+<%@ page import = " com.javaex.vo.UserVo "%>
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	GuestBookDao guestBookDao = new GuestBookDao();
-	List<GuestBookVo> guestList = guestBookDao.guestSelect();
+	UserVo authUser = (UserVo)session.getAttribute("authUser");
+	List<GuestBookVo> guestList = (List<GuestBookVo>)request.getAttribute("guestList");
 %>    
 <!DOCTYPE html>
 <html>
@@ -24,19 +26,18 @@
 			<h1>
 				<a href="./main">MySite</a>
 			</h1>
-
-			<!-- 
+			<%if(authUser == null){%>
 			<ul>
-				<li>최정필 님 안녕하세요^^</li>
-				<li><a href="" class="btn_s">로그아웃</a></li>
-				<li><a href="" class="btn_s">회원정보수정</a></li>
+				<li><a href="/mysite2/user?action=loginForm" class="btn_s">로그인</a></li>
+				<li><a href="/mysite2/user?action=joinForm" class="btn_s">회원가입</a></li>
 			</ul>
-			-->	
+			<%} else {%>
 			<ul>
-				<li><a href="./user?action=loginForm" class="btn_s">로그인</a></li>
-				<li><a href="./user?action=joinForm" class="btn_s">회원가입</a></li>
+				<li><%=authUser.getName() %> 님 안녕하세요^^</li>
+				<li><a href="/mysite2/user?action=logout" class="btn_s">로그아웃</a></li>
+				<li><a href="/mysite2/user?action=modifyForm" class="btn_s">회원정보수정</a></li>
 			</ul>
-			
+			<%}%>
 		</div>
 		<!-- //header -->
 
@@ -75,7 +76,8 @@
 				<!-- //content-head -->
 
 				<div id="guestbook">
-					<form action="./gbc?action=add" method="post">
+					<form action="./gbc" method="post">
+					<input type = "hidden" name = "action" value = "add">
 						<table id="guestAdd">
 							<colgroup>
 								<col style="width: 70px;">
@@ -85,10 +87,10 @@
 							</colgroup>
 							<tbody>
 								<tr>
-									<th><label class="form-text" for="input-uname">이름</label></td>
-									<td><input id="input-uname" type="text" name="name"></td>
-									<th><label class="form-text" for="input-pass">패스워드</label></td>
-									<td><input id="input-pass"type="password" name="pass"></td>
+									<th><label class="form-text" for="input-uname">이름</label></th>
+									<td><input id="input-uname" type="text" name="name" value =""></td>
+									<th><label class="form-text" for="input-pass">패스워드</label></th>
+									<td><input id="input-pass" type="password" name="password" value=""></td>
 								</tr>
 								<tr>
 									<td colspan="4"><textarea name="content" cols="72" rows="5"></textarea></td>
@@ -100,10 +102,9 @@
 							
 						</table>
 						<!-- //guestWrite -->
-						<input type="hidden" name="action" value="add">
-						
 					</form>	
 					
+					<%for(int i = 0; i<guestList.size(); i++){ %>
 					<table class="guestRead">
 						<colgroup>
 							<col style="width: 10%;">
@@ -112,36 +113,17 @@
 							<col style="width: 10%;">
 						</colgroup>
 						<tr>
-							<td>1234555</td>
-							<td>이정재</td>
-							<td>2020-03-03 12:12:12</td>
-							<td><a href="">[삭제]</a></td>
+							<td><%=guestList.get(i).getNo() %></td>
+							<td><%=guestList.get(i).getName() %></td>
+							<td><%=guestList.get(i).getRegDate() %></td>
+							<td><a href="./gbc?action=deleteForm&no=<%=guestList.get(i).getNo() %>">[삭제]</a></td>
 						</tr>
 						<tr>
-							<td colspan=4 class="text-left">방명록 글입니다. 방명록 글입니다.</td>
+							<td colspan=4 class="text-left"><%=guestList.get(i).getContent() %></td>
 						</tr>
 					</table>
 					<!-- //guestRead -->
-					
-					<table class="guestRead">
-						<colgroup>
-								<col style="width: 10%;">
-								<col style="width: 40%;">
-								<col style="width: 40%;">
-								<col style="width: 10%;">
-						</colgroup>
-						<tr>
-							<td>1234555</td>
-							<td>이정재</td>
-							<td>2020-03-03 12:12:12</td>
-							<td><a href="">[삭제]</a></td>
-						</tr>
-						<tr>
-							<td colspan=4 class="text-left">방명록 글입니다. 방명록 글입니다.</td>
-						</tr>
-					</table>	
-					<!-- //guestRead -->
-					
+					<%} %>
 				</div>
 				<!-- //guestbook -->
 			

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.javaex.vo.GuestBookVo;
+import com.javaex.vo.UserVo;
 
 public class GuestBookDao {
 
@@ -56,7 +57,7 @@ public class GuestBookDao {
 	}
 
 	public int guestAdd(GuestBookVo guestBookVo) {
-		int count = 0;
+		int count = -1;
 
 		getConnection();
 
@@ -88,8 +89,8 @@ public class GuestBookDao {
 
 	}
 
-	public int guestDelete(int no) {
-		int count = 1;
+	public int guestDelete(int no, String password) {
+		int count = -1;
 
 		getConnection();
 
@@ -98,10 +99,12 @@ public class GuestBookDao {
 			String query = "";
 			query += " delete from guestbook ";
 			query += " where no = ? ";
+			query += " and password = ? ";
 
 			// 바인딩
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, no);
+			pstmt.setString(2, password);
 
 			// 실행
 			count = pstmt.executeUpdate();
@@ -116,7 +119,7 @@ public class GuestBookDao {
 
 		return count;
 	}
-	
+
 	public List<GuestBookVo> guestSelect() {
 
 		// 리스트로 만들기
@@ -132,6 +135,7 @@ public class GuestBookDao {
 			query += " 		  content,";
 			query += " 		  reg_date";
 			query += " from guestbook ";
+			query += " order by no desc ";
 
 			// 바인딩
 			pstmt = conn.prepareStatement(query);

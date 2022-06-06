@@ -7,13 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class WebUitl {
-	
-	//필드
-	
-	//생성자
-	
-	//메소드 - gs
+public class WebUtil {
 	
 	//메소드 - 일반
 	public static void forward(HttpServletRequest request, HttpServletResponse response,String path) throws ServletException, IOException  {

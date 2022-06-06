@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.javaex.util.WebUitl;
+import com.javaex.util.WebUtil;
 
 @WebServlet("/main")
 public class MainController extends HttpServlet {
@@ -26,7 +26,7 @@ public class MainController extends HttpServlet {
 		System.out.println("MainController");
 		
 		//포워드
-		WebUitl.forward(request, response, "/WEB-INF/views/main/index.jsp");
+		WebUtil.forward(request, response, "/WEB-INF/views/main/index.jsp");
 		
 	}
 
