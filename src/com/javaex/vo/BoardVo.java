@@ -1,6 +1,6 @@
 package com.javaex.vo;
 
-public class ListVo {
+public class BoardVo {
 
 	// 필드
 	private int no;
@@ -10,12 +10,12 @@ public class ListVo {
 	private String regDate;
 	private int userNo;
 
-	public ListVo() {
+	public BoardVo() {
 
 	}
 
 	// 생성자
-	public ListVo(int no, String title, String content, int hit, String regDate, int userNo) {
+	public BoardVo(int no, String title, String content, int hit, String regDate, int userNo) {
 		this.no = no;
 		this.title = title;
 		this.content = content;
