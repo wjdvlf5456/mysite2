@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import ="com.javaex.vo.UserVo"%>
-<%
-	UserVo authUser = (UserVo)session.getAttribute("authUser");
-%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="com.javaex.vo.UserVo" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -14,26 +13,9 @@
 
 	<body>
 		<div id="wrap">
-	
-			<div id="header" class="clearfix">
-				<h1>
-					<a href="./main">MySite</a>
-				</h1>
-				<%if(authUser == null){%>
-				<ul>
-					<li><a href="/mysite2/user?action=loginForm" class="btn_s">로그인</a></li>
-					<li><a href="/mysite2/user?action=joinForm" class="btn_s">회원가입</a></li>
-				</ul>
-				<%} else {%>
-				<ul>
-					<li><%=authUser.getName() %> 님 안녕하세요^^</li>
-					<li><a href="./user?action=logout" class="btn_s">로그아웃</a></li>
-					<li><a href="./user?action=modifyForm" class="btn_s">회원정보수정</a></li>
-				</ul>
-				<%}%>
-			</div>
+			<!-- header -->
+		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 			<!-- //header -->
-	
 			<div id="nav">
 				<ul class="clearfix">
 					<li><a href="">입사지원서</a></li>
@@ -88,10 +70,9 @@
 			<!-- //container -->
 			
 			
-			<div id="footer">
-				Copyright ⓒ 2022 최정필. All right reserved
-			</div>
-			<!-- //footer -->
+		<!-- footer -->
+		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
+		<!-- //footer -->
 	
 		</div>
 		<!-- //wrap -->

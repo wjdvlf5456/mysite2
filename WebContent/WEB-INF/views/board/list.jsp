@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,31 +10,13 @@
 <link href="mysite2/assets/css/board.css" rel="stylesheet" type="text/css">
 
 </head>
-
-
 <body>
 	<div id="wrap">
 
-		<div id="header" class="clearfix">
-			<h1>
-				<a href="./main">MySite</a>
-			</h1>
-
-			<!-- 
-			<ul>
-				<li>최정필 님 안녕하세요^^</li>
-				<li><a href="" class="btn_s">로그아웃</a></li>
-				<li><a href="" class="btn_s">회원정보수정</a></li>
-			</ul>
-			-->	
-			<ul>
-				<li><a href="./user?action=loginForm" class="btn_s">로그인</a></li>
-				<li><a href="./user?action=joinForm" class="btn_s">회원가입</a></li>
-			</ul>
-			
-		</div>
+		<!-- header -->
+		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 		<!-- //header -->
-		
+
 		<div id="nav">
 			<ul class="clearfix">
 				<li><a href="">입사지원서</a></li>
@@ -68,7 +51,7 @@
 					<div class="clear"></div>
 				</div>
 				<!-- //content-head -->
-	
+
 				<div id="board">
 					<div id="list">
 						<form action="" method="">
@@ -77,7 +60,7 @@
 								<button type="submit" id=btn_search>검색</button>
 							</div>
 						</form>
-						<table >
+						<table>
 							<thead>
 								<tr>
 									<th>번호</th>
@@ -131,7 +114,7 @@
 								</tr>
 							</tbody>
 						</table>
-			
+
 						<div id="paging">
 							<ul>
 								<li><a href="">◀</a></li>
@@ -147,12 +130,12 @@
 								<li><a href="">10</a></li>
 								<li><a href="">▶</a></li>
 							</ul>
-							
-							
+
+
 							<div class="clear"></div>
 						</div>
 						<a id="btn_write" href="">글쓰기</a>
-					
+
 					</div>
 					<!-- //list -->
 				</div>
@@ -162,11 +145,10 @@
 
 		</div>
 		<!-- //container  -->
-		
 
-		<div id="footer">
-			Copyright ⓒ 2022 최정필. All right reserved
-		</div>
+
+		<!-- footer -->
+		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		<!-- //footer -->
 	</div>
 	<!-- //wrap -->

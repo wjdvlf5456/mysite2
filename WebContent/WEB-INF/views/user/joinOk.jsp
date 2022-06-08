@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,25 +13,8 @@
 
 <body>
 	<div id="wrap">
-
-		<div id="header" class="clearfix">
-			<h1>
-				<a href="./main">MySite</a>
-			</h1>
-
-			<!-- 
-			<ul>
-				<li>최정필 님 안녕하세요^^</li>
-				<li><a href="" class="btn_s">로그아웃</a></li>
-				<li><a href="" class="btn_s">회원정보수정</a></li>
-			</ul>
-			-->	
-			<ul>
-				<li><a href="mysite2/user?action=loginForm" class="btn_s">로그인</a></li>
-				<li><a href="mysite2/user?action=joinForm" class="btn_s">회원가입</a></li>
-			</ul>
-			
-		</div>
+		<!-- header -->
+		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 		<!-- //header -->
 
 		<div id="nav">
@@ -55,7 +39,7 @@
 			<!-- //aside -->
 
 			<div id="content">
-			
+
 				<div id="content-head">
 					<h3>회원가입</h3>
 					<div id="location">
@@ -68,16 +52,14 @@
 					<div class="clear"></div>
 				</div>
 				<!-- //content-head -->
-	
+
 				<div id="user">
 					<div id="joinOK">
-					
+
 						<p class="text-large bold">
-							회원가입을 축하합니다.<br>
-							<br>
-							<a href="./user?action=loginForm" >[로그인하기]</a>
+							회원가입을 축하합니다.<br> <br> <a href="./user?action=loginForm">[로그인하기]</a>
 						</p>
-							
+
 					</div>
 					<!-- //joinOK -->
 				</div>
@@ -87,10 +69,8 @@
 		</div>
 		<!-- //container  -->
 
-
-		<div id="footer">
-			Copyright ⓒ 2022 최정필. All right reserved
-		</div>
+		<!-- footer -->
+		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		<!-- //footer -->
 
 	</div>

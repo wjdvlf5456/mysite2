@@ -1,13 +1,6 @@
-<%@ page import = "java.util.List" %>
-<%@ page import = " com.javaex.vo.GuestBookVo "%>
-<%@ page import = " com.javaex.vo.UserVo "%>
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-	UserVo authUser = (UserVo)session.getAttribute("authUser");
-	List<GuestBookVo> guestList = (List<GuestBookVo>)request.getAttribute("guestList");
-%>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="com.javaex.vo.GuestBookVo" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,23 +15,8 @@
 <body>
 	<div id="wrap">
 
-		<div id="header" class="clearfix">
-			<h1>
-				<a href="./main">MySite</a>
-			</h1>
-			<%if(authUser == null){%>
-			<ul>
-				<li><a href="/mysite2/user?action=loginForm" class="btn_s">로그인</a></li>
-				<li><a href="/mysite2/user?action=joinForm" class="btn_s">회원가입</a></li>
-			</ul>
-			<%} else {%>
-			<ul>
-				<li><%=authUser.getName() %> 님 안녕하세요^^</li>
-				<li><a href="/mysite2/user?action=logout" class="btn_s">로그아웃</a></li>
-				<li><a href="/mysite2/user?action=modifyForm" class="btn_s">회원정보수정</a></li>
-			</ul>
-			<%}%>
-		</div>
+		<!-- header -->
+		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 		<!-- //header -->
 
 		<div id="nav">
@@ -103,8 +81,7 @@
 						</table>
 						<!-- //guestWrite -->
 					</form>	
-					
-					<%for(int i = 0; i<guestList.size(); i++){ %>
+					<c:forEach items="${guestList }" var="gList">
 					<table class="guestRead">
 						<colgroup>
 							<col style="width: 10%;">
@@ -113,17 +90,17 @@
 							<col style="width: 10%;">
 						</colgroup>
 						<tr>
-							<td><%=guestList.get(i).getNo() %></td>
-							<td><%=guestList.get(i).getName() %></td>
-							<td><%=guestList.get(i).getRegDate() %></td>
-							<td><a href="./gbc?action=deleteForm&no=<%=guestList.get(i).getNo() %>">[삭제]</a></td>
+							<td>${gList.no }</td>
+							<td>${gList.name }</td>
+							<td>${gList.regDate }</td>
+							<td><a href="./gbc?action=deleteForm&no=${gList.no }">[삭제]</a></td>
 						</tr>
 						<tr>
-							<td colspan=4 class="text-left"><%=guestList.get(i).getContent() %></td>
+							<td colspan=4 class="text-left">${gList.content }</td>
 						</tr>
 					</table>
 					<!-- //guestRead -->
-					<%} %>
+					</c:forEach>
 				</div>
 				<!-- //guestbook -->
 			
@@ -132,9 +109,8 @@
 		</div>
 		<!-- //container  -->
 
-		<div id="footer">
-			Copyright ⓒ 2022 최정필. All right reserved
-		</div>
+		<!-- footer -->
+		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		<!-- //footer -->
 	</div>
 	<!-- //wrap -->
