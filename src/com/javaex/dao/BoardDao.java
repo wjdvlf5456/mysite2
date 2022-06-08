@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.javaex.vo.BoardVo;
+import com.javaex.vo.UserVo;
 
 public class BoardDao {
 
@@ -241,6 +242,51 @@ public class BoardDao {
 
 		close();
 
+	}
+
+	public BoardVo getBoard(int no) {
+		BoardVo boardVo = null;
+		this.getConnection();
+
+		try {
+
+			// 3. SQL문 준비 / 바인딩 / 실행
+			// SQL문 준비
+			String query = "";
+			query += " select s.name, ";
+			query += " 		  b.hit,";
+			query += " 		  to_char(b.reg_date, 'yy-mm-dd hh:mi'), ";
+			query += " 		  b.title,";
+			query += " 		  b.content ";
+			query += " from users s";
+			query += " left outer join board b on b.user_no = s.no";
+			query += " where b.no = ? ";
+
+			// 바인딩
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, no);
+
+			// 실행
+			rs = pstmt.executeQuery();
+
+			// 4.결과처리
+			if (rs.next()) {
+				String name = rs.getString(1);
+				int hit = rs.getInt(2);
+				String regDate = rs.getString(3);
+				String title = rs.getString(4);
+				String content = rs.getString(5);
+
+				boardVo = new BoardVo(no, title, content, hit, regDate, name);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		}
+
+		close();
+
+		return boardVo;
 	}
 
 }

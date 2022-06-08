@@ -31,13 +31,17 @@ public class BoardController extends HttpServlet {
 		System.out.println(action);
 
 		// ==================================================================================================
+		// 게시판 메인
 		if ("list".equals(action)) {
 			List<Object> boardList = boardDao.boardSelect();
-			System.out.println(boardList.toString());
 
 			request.setAttribute("boardList", boardList);
 
 			WebUtil.forward(request, response, "/WEB-INF/views/board/list.jsp");
+
+			// ==================================================================================================
+			// ==================================================================================================
+			// 게시판 수정 폼 (modifyForm)
 		} else if ("modifyForm".equals(action)) {
 
 			WebUtil.forward(request, response, "/WEB-INF/views/board/modifyForm.jsp");
@@ -47,11 +51,16 @@ public class BoardController extends HttpServlet {
 			int no = Integer.parseInt(request.getParameter("no"));
 			boardDao.getHit(no);
 
+			BoardVo boardVo = boardDao.getBoard(no);
+
+			request.setAttribute("boardVo", boardVo);
+
 			WebUtil.forward(request, response, "/WEB-INF/views/board/read.jsp");
 
 			// ==================================================================================================
-
-		} else if ("writeForm".equals(action)) { // 글쓰기
+			// ==================================================================================================
+			// 글쓰기 폼 (writeForm.jsp)
+		} else if ("writeForm".equals(action)) {
 			System.out.println("writeForm");
 
 			WebUtil.forward(request, response, "/WEB-INF/views/board/writeForm.jsp");
@@ -66,6 +75,8 @@ public class BoardController extends HttpServlet {
 			WebUtil.redirect(request, response, "./board?action=list");
 
 			// ==================================================================================================
+			// ==================================================================================================
+			// 글 삭제
 		} else if ("delete".equals(action)) { // 삭제
 			int no = Integer.parseInt(request.getParameter("no"));
 

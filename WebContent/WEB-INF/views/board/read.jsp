@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import = "com.javaex.vo.BoardVo" %>
 
 <!DOCTYPE html>
 <html>
@@ -60,12 +61,12 @@
 							<input type="hidden" name="action" value="read">
 							<!-- 작성자 -->
 							<div class="form-group">
-								<span class="form-text">작성자</span> <span class="form-value">정우성</span>
+								<span class="form-text">작성자</span> <span class="form-value">${boardVo.name }</span>
 							</div>
 
 							<!-- 조회수 -->
 							<div class="form-group">
-								<span class="form-text">조회수</span> <span class="form-value">123</span>
+								<span class="form-text">조회수</span> <span class="form-value">"${boardVo.hit }"</span>
 							</div>
 
 							<!-- 작성일 -->
