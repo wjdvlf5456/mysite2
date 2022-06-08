@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<%@ page import = "com.javaex.vo.UserVo" %>    
-    
+<%@ page import="com.javaex.vo.UserVo"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,9 +23,9 @@
 		<div id="nav">
 			<ul class="clearfix">
 				<li><a href="">입사지원서</a></li>
-				<li><a href="">게시판</a></li>
+				<li><a href="./board?action=list">게시판</a></li>
 				<li><a href="">갤러리</a></li>
-				<li><a href="">방명록</a></li>
+				<li><a href="./gbc?action=addList">방명록</a></li>
 			</ul>
 		</div>
 		<!-- //nav -->
@@ -41,7 +41,7 @@
 			<!-- //aside -->
 
 			<div id="content">
-			
+
 				<div id="content-head">
 					<h3>일반방명록</h3>
 					<div id="location">
@@ -54,11 +54,10 @@
 					<div class="clear"></div>
 				</div>
 				<!-- //content-head -->
-	
+
 				<div id="guestbook">
 					<form action="./gbc" method="post">
-						<input type = "hidden" name = "action" value ="delete">
-						<input type = "hidden" name = "no" value ="<%=request.getParameter("no") %>">
+						<input type="hidden" name="action" value="delete"> <input type="hidden" name="no" value="<%=request.getParameter("no") %>">
 						<table id="guestDelete">
 							<colgroup>
 								<col style="width: 10%;">
@@ -74,7 +73,7 @@
 							</tr>
 						</table>
 					</form>
-					
+
 				</div>
 				<!-- //guestbook -->
 			</div>
@@ -82,7 +81,7 @@
 
 		</div>
 		<!-- //container  -->
-		
+
 		<!-- footer -->
 		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		<!-- //footer -->

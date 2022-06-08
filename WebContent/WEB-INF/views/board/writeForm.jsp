@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="mysite2/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="mysite2/assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="/mysite2/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="/mysite2/assets/css/board.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -21,9 +21,9 @@
 		<div id="nav">
 			<ul class="clearfix">
 				<li><a href="">입사지원서</a></li>
-				<li><a href="">게시판</a></li>
+				<li><a href="./board?action=list">게시판</a></li>
 				<li><a href="">갤러리</a></li>
-				<li><a href="">방명록</a></li>
+				<li><a href="./gbc?action=addList">방명록</a></li>
 			</ul>
 		</div>
 		<!-- //nav -->
@@ -55,18 +55,19 @@
 
 				<div id="board">
 					<div id="writeForm">
-						<form action="#" method="get">
+						<form action="/mysite2/board?" method="get">
+							<input type = "hidden" name ="action" value ="write">
 							<!-- 제목 -->
 							<div class="form-group">
-								<label class="form-text" for="txt-title">제목</label> <input type="text" id="txt-title" name="" value="" placeholder="제목을 입력해 주세요">
+								<label class="form-text" for="txt-title">제목</label> <input type="text" id="txt-title" name="title" value="" placeholder="제목을 입력해 주세요">
 							</div>
 
 							<!-- 내용 -->
 							<div class="form-group">
-								<textarea id="txt-content"></textarea>
+								<textarea id="txt-content" name = "content"></textarea>
 							</div>
-
-							<a id="btn_cancel" href="">취소</a>
+							<input type ="hidden" name ="no" value="${authUser.no }"> 
+							<a id="btn_cancel" href="board?action=list">취소</a>
 							<button id="btn_add" type="submit">등록</button>
 
 						</form>

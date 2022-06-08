@@ -10,11 +10,29 @@ public class BoardVo {
 	private String regDate;
 	private int userNo;
 
+	// 생성자
 	public BoardVo() {
 
 	}
 
-	// 생성자
+	public BoardVo(int no) {
+		this.no = no;
+	}
+
+	public BoardVo(String title, String content, int userNo) {
+		this.title = title;
+		this.content = content;
+		this.userNo = userNo;
+	}
+
+	public BoardVo(int no, String title, String content, String regDate, int userNo) {
+		this.no = no;
+		this.title = title;
+		this.content = content;
+		this.regDate = regDate;
+		this.userNo = userNo;
+	}
+
 	public BoardVo(int no, String title, String content, int hit, String regDate, int userNo) {
 		this.no = no;
 		this.title = title;
