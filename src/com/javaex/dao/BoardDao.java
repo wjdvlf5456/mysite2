@@ -60,9 +60,9 @@ public class BoardDao {
 		}
 	}
 
-	public List<Object> boardSelect() {
+	public List<BoardVo> boardSelect() {
 
-		List<Object> boardList = new ArrayList<Object>();
+		List<BoardVo> boardList = new ArrayList<BoardVo>();
 		getConnection();
 
 		try {
@@ -70,33 +70,32 @@ public class BoardDao {
 			String query = "";
 			query += " select b.no, ";
 			query += " 		  b.title,";
-			query += " 		  s.name,";
 			query += " 		  b.hit,";
-			query += " 		  b.reg_date ";
-//			query += " 		  to_char(b.reg_date, 'yy-mm-dd hh:mi') ";
+			query += " 		  to_char(b.reg_date,'yy-mm-dd hh:mi'), ";
+			query += " 		  s.name";
 			query += " from users s";
 			query += " left outer join board b on b.user_no = s.no";
 			query += " order by b.no desc ";
-
+			
 			// 바인딩
 			pstmt = conn.prepareStatement(query);
 
 			// 실행
 			rs = pstmt.executeQuery();
-
+			
 			while (rs.next()) {
-				SimpleDateFormat transFormat = new SimpleDateFormat("yy-MM-dd HH:mm");
+				int no = rs.getInt(1);
+				String title = rs.getString(2);
+				int hit = rs.getInt(3);
+				String regDate = rs.getString(4);
+				String name = rs.getString(5);
 
-				Map<String, String> aMap = new HashMap<>();
-				aMap.put("no", Integer.toString(rs.getInt("no")));
-				aMap.put("title", rs.getString("title"));
-				aMap.put("name", rs.getString("name"));
-				aMap.put("hit", Integer.toString(rs.getInt("hit")));
-				aMap.put("reg_date", transFormat.format(rs.getDate("reg_date")));
-
-				boardList.add(aMap);
-
+				BoardVo boardVo = new BoardVo(no, title, hit, regDate, name);
+				
+				boardList.add(boardVo);
 			}
+
+
 
 			for (int i = 0; i < boardList.size(); i++) {
 				boardList.get(i).toString();

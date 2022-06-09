@@ -84,8 +84,9 @@
 								<span class="form-value"> ${boardVo.content }<br>
 								</span>
 							</div>
-
-							<a id="btn_modify" href="/mysite2/board?action=modifyForm">수정</a> <a id="btn_modify" href="/mysite2/board?action=list">목록</a>
+					
+							<a id="btn_modify" href="/mysite2/board?action=modifyForm">수정</a> 
+							<a id="btn_modify" href="/mysite2/board?action=list">목록</a>
 
 						</form>
 						<!-- //form -->

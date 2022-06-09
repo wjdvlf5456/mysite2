@@ -33,7 +33,7 @@ public class BoardController extends HttpServlet {
 		// ==================================================================================================
 		// 게시판 메인
 		if ("list".equals(action)) {
-			List<Object> boardList = boardDao.boardSelect();
+			List<BoardVo> boardList = boardDao.boardSelect();
 
 			request.setAttribute("boardList", boardList);
 

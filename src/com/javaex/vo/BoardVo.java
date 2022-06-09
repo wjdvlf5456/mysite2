@@ -31,6 +31,14 @@ public class BoardVo {
 		this.content = content;
 		this.userNo = userNo;
 	}
+	
+	public BoardVo(int no, String title, int hit, String regDate, String name) {
+		this.no = no;
+		this.title = title;
+		this.hit = hit;
+		this.regDate = regDate;
+		this.name = name;
+	}
 
 	public BoardVo(int no, String title, String content, int hit, String regDate, String name) {
 		this.no = no;
