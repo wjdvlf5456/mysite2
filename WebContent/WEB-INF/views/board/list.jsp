@@ -87,7 +87,10 @@ List<BoardVo> boardList = (List<BoardVo>) request.getAttribute("boardList");
 										<th>${bList.name}</th>
 										<td>${bList.hit}</td>
 										<td>${bList.regDate}</td>
-										<td><a href="./board?action=delete&no=${bList.no }">[삭제]</a></td>
+
+										<c:if test="${authUser.name == bList.name }">
+											<td><a href="./board?action=delete&no=${bList.no }">[삭제]</a></td>
+										</c:if>
 									</tr>
 								</tbody>
 							</c:forEach>

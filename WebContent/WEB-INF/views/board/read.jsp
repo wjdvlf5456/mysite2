@@ -66,7 +66,7 @@
 
 							<!-- 조회수 -->
 							<div class="form-group">
-								<span class="form-text">조회수</span> <span class="form-value">"${boardVo.hit }"</span>
+								<span class="form-text">조회수</span> <span class="form-value">${boardVo.hit }</span>
 							</div>
 
 							<!-- 작성일 -->
