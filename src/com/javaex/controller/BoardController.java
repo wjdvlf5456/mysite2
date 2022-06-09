@@ -43,22 +43,25 @@ public class BoardController extends HttpServlet {
 			// ==================================================================================================
 			// 게시판 수정 폼 (modifyForm)
 		} else if ("modifyForm".equals(action)) {
+			int no = Integer.parseInt(request.getParameter("no"));
+			BoardVo boardVo = boardDao.getBoard(no);
+
+			request.setAttribute("boardVo", boardVo);
 
 			WebUtil.forward(request, response, "/WEB-INF/views/board/modifyForm.jsp");
 		} else if ("modify".equals(action)) {
-			//파라미터
+			// 파라미터
+			int no = Integer.parseInt(request.getParameter("no"));
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
-			int no = Integer.parseInt(request.getParameter("no"));
-			
-			//바인딩
-			BoardVo boardVo = new BoardVo(no,title,content);
-			
-			//Dao로 업데이트
+
+			// 바인딩
+			BoardVo boardVo = new BoardVo(no, title, content);
+
+			// Dao로 업데이트
 			boardDao.boardUpdate(boardVo);
-			
+
 			WebUtil.redirect(request, response, "./board?action=list");
-			
 
 		} else if ("read".equals(action)) {
 			int no = Integer.parseInt(request.getParameter("no"));

@@ -55,7 +55,7 @@
 
 				<div id="board">
 					<div id="modifyForm">
-						<form action="./board?" method="get">
+						<form action="./board?" method="post">
 						<input type="hidden" name="action" value="modify">
 							<!-- 작성자 -->
 							<div class="form-group">
@@ -76,8 +76,6 @@
 							<div class="form-group">
 								<label class="form-text" for="txt-title">제목</label> <input type="text" id="txt-title" name="title" value="">
 							</div>
-
-
 
 							<!-- 내용 -->
 							<div class="form-group">

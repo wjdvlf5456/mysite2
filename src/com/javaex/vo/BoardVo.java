@@ -20,12 +20,12 @@ public class BoardVo {
 		this.no = no;
 	}
 
-	public BoardVo(int no, String title, String content) {
+
+	public BoardVo(int no,String title, String content) {
 		this.no = no;
 		this.title = title;
 		this.content = content;
 	}
-
 	public BoardVo(String title, String content, int userNo) {
 		this.title = title;
 		this.content = content;

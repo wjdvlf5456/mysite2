@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import = "com.javaex.vo.BoardVo" %>
+<%@ page import="com.javaex.vo.BoardVo"%>
 
 <!DOCTYPE html>
 <html>
@@ -84,8 +84,10 @@
 								<span class="form-value"> ${boardVo.content }<br>
 								</span>
 							</div>
-					
-							<a id="btn_modify" href="/mysite2/board?action=modifyForm">수정</a> 
+
+							<c:if test="${authUser.name == boardVo.name }">
+								<a id="btn_modify" href="./board?action=modifyForm&no=${boardVo.no }">수정</a>
+							</c:if>
 							<a id="btn_modify" href="/mysite2/board?action=list">목록</a>
 
 						</form>
