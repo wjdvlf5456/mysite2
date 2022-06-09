@@ -181,14 +181,14 @@ public class BoardDao {
 			String query = "";
 			query += " update board ";
 			query += " set 	 title = ?, ";
-			query += " 	   	 content = ?, ";
-			query += " where user_no = ? ";
+			query += " 	   	 content = ? ";
+			query += " where no = ? ";
 
 			// 바인딩
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, boardVo.getTitle());
 			pstmt.setString(2, boardVo.getContent());
-			pstmt.setInt(3, boardVo.getUserNo());
+			pstmt.setInt(3, boardVo.getNo());
 
 			count = pstmt.executeUpdate();
 
