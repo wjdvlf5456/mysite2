@@ -10,6 +10,7 @@ public class BoardVo {
 	private String regDate;
 	private int userNo;
 	private String name;
+	private String search;
 
 	// 생성자
 	public BoardVo() {
@@ -20,18 +21,22 @@ public class BoardVo {
 		this.no = no;
 	}
 
+	public BoardVo(String search) {
+		this.search = search;
+	}
 
-	public BoardVo(int no,String title, String content) {
+	public BoardVo(int no, String title, String content) {
 		this.no = no;
 		this.title = title;
 		this.content = content;
 	}
+
 	public BoardVo(String title, String content, int userNo) {
 		this.title = title;
 		this.content = content;
 		this.userNo = userNo;
 	}
-	
+
 	public BoardVo(int no, String title, int hit, String regDate, String name) {
 		this.no = no;
 		this.title = title;
@@ -46,6 +51,15 @@ public class BoardVo {
 		this.content = content;
 		this.hit = hit;
 		this.regDate = regDate;
+		this.name = name;
+	}
+
+	public BoardVo(int no, String title, int hit, String regDate, int userNo, String name) {
+		this.no = no;
+		this.title = title;
+		this.hit = hit;
+		this.regDate = regDate;
+		this.userNo = userNo;
 		this.name = name;
 	}
 
@@ -116,11 +130,19 @@ public class BoardVo {
 		this.userNo = userNo;
 	}
 
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
 	// 메소드 - 일반
 	@Override
 	public String toString() {
 		return "BoardVo [no=" + no + ", title=" + title + ", content=" + content + ", hit=" + hit + ", regDate="
-				+ regDate + ", userNo=" + userNo + ", name=" + name + "]";
+				+ regDate + ", userNo=" + userNo + ", name=" + name + ", search=" + search + "]";
 	}
 
 }

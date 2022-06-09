@@ -72,30 +72,35 @@ public class BoardDao {
 			query += " 		  b.title,";
 			query += " 		  b.hit,";
 			query += " 		  to_char(b.reg_date,'yy-mm-dd hh:mi'), ";
+			query += " 		  b.user_no,";
 			query += " 		  s.name";
 			query += " from users s";
 			query += " left outer join board b on b.user_no = s.no";
 			query += " order by b.no desc ";
-			
+
 			// 바인딩
 			pstmt = conn.prepareStatement(query);
 
 			// 실행
 			rs = pstmt.executeQuery();
-			
+
 			while (rs.next()) {
 				int no = rs.getInt(1);
 				String title = rs.getString(2);
 				int hit = rs.getInt(3);
 				String regDate = rs.getString(4);
-				String name = rs.getString(5);
+				int userNo = rs.getInt(5);
+				String name = rs.getString(6);
+				if (regDate == null) {
+					continue;
+				} else {
+					BoardVo boardVo = new BoardVo(no, title, hit, regDate, userNo, name);
 
-				BoardVo boardVo = new BoardVo(no, title, hit, regDate, name);
-				
-				boardList.add(boardVo);
+					boardList.add(boardVo);
+
+				}
+
 			}
-
-
 
 			for (int i = 0; i < boardList.size(); i++) {
 				boardList.get(i).toString();

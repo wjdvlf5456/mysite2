@@ -64,7 +64,7 @@ List<BoardVo> boardList = (List<BoardVo>) request.getAttribute("boardList");
 					<div id="list">
 						<form action="./board?" method="post">
 							<div class="form-group text-right">
-								<input type="text">
+								<input type="text" name="serach" value="">
 								<button type="submit" id=btn_search>검색</button>
 							</div>
 						</form>
@@ -88,7 +88,7 @@ List<BoardVo> boardList = (List<BoardVo>) request.getAttribute("boardList");
 										<td>${bList.hit}</td>
 										<td>${bList.regDate}</td>
 
-										<c:if test="${authUser.name == bList.name }">
+										<c:if test="${authUser.no == bList.userNo }">
 											<td><a href="./board?action=delete&no=${bList.no }">[삭제]</a></td>
 										</c:if>
 									</tr>
