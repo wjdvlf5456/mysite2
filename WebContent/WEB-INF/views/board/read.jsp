@@ -71,17 +71,17 @@
 
 							<!-- 작성일 -->
 							<div class="form-group">
-								<span class="form-text">작성일</span> <span class="form-value">2020-03-02</span>
+								<span class="form-text">작성일</span> <span class="form-value">${boardVo.regDate }</span>
 							</div>
 
 							<!-- 제목 -->
 							<div class="form-group">
-								<span class="form-text">제 목</span> <span class="form-value">여기에는 글제목이 출력됩니다.</span>
+								<span class="form-text">제 목</span> <span class="form-value">${boardVo.title }</span>
 							</div>
 
 							<!-- 내용 -->
 							<div id="txt-content">
-								<span class="form-value"> 여기에는 본문내용이 출력됩니다.<br> 여기에는 본문내용이 출력됩니다.<br> 여기에는 본문내용이 출력됩니다.<br> 여기에는 본문내용이 출력됩니다.<br> 여기에는 본문내용이 출력됩니다.<br> 여기에는 본문내용이 출력됩니다.<br> 여기에는 본문내용이 출력됩니다.<br> 여기에는 본문내용이 출력됩니다.<br>
+								<span class="form-value"> ${boardVo.content }<br>
 								</span>
 							</div>
 
